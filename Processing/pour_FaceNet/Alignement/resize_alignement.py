@@ -3,10 +3,9 @@ import cv2
 import matplotlib.pyplot as plt
 import re
 import os
-import random
-import shutil
 import json
 import sys
+import glob
 
 
 def read_file(filename):
@@ -68,14 +67,18 @@ def find_angle(coords,c,transpose = False):
 
 def crop_rotated(rotated_img):
     i=0
-    w,h = rotated_img.shape[0],rotated_img.shape[1]
+    h,w = rotated_img.shape[0],rotated_img.shape[1]
     while len(rotated_img[rotated_img == 0]) > 10:
         i+=1
-        x,y = max(1,int(h*0.03)),max(1,int(w*0.03))  
-        rotated_img = rotated_img[x:-x,y:-y] 
+        h_new,w_new = int(h*0.99),int(w*0.99) 
+        x,y = h - h_new,w - w_new
+        a,b = int(x/2),int(h-x/2)
+        c,d = int(y/2),int(w-y/2)
+        rotated_img = rotated_img[a:b,c:d]
+        h,w = rotated_img.shape[0],rotated_img.shape[1]
     return rotated_img
 
-
+    
 def crop_rotated(rotated_img):
     i=0
     w,h = rotated_img.shape[0],rotated_img.shape[1]
@@ -104,28 +107,31 @@ def main():
     ###########################
     # Distribution du dataset #
     ###########################
-    print("starting distributons of dataset displays")
+    # print("starting distributons of dataset displays")
 
-    shapes = []
-    for i in img_index:
-        img = cv2.imread(path(i),cv2.IMREAD_COLOR)
-        shapes.append(list(img.shape))
-    shapes = np.array(shapes)  
+    # shapes = []
+    # for i in img_index:
+    #     img = cv2.imread(path(i),cv2.IMREAD_COLOR)
+    #     shapes.append(list(img.shape))
+    # shapes = np.array(shapes)  
 
-    fig = plt.figure()
-    ax1 = fig.add_subplot(121)
-    ax2 = fig.add_subplot(122)
-    ax1.hist(shapes[:,0],bins=100)
-    ax2.hist(shapes[:,1],bins=100)
-    ax1.title.set_text("hauteur pixels image")
-    ax2.title.set_text("largeur pixels image")
-    print("saving dimensions of dataset in .png file")
-    plt.savefig('foo.png')
+    # fig = plt.figure()
+    # ax1 = fig.add_subplot(121)
+    # ax2 = fig.add_subplot(122)
+    # ax1.hist(shapes[:,0],bins=100)
+    # ax2.hist(shapes[:,1],bins=100)
+    # ax1.title.set_text("hauteur pixels image")
+    # ax2.title.set_text("largeur pixels image")
+    # print("saving dimensions of dataset in .png file")
+    # plt.savefig('foo.png')
     print("starting to resize and align images")
      
     #############################################
-    # Début de resize et alignements des images #
+    # Début du resize et alignements des images #
     #############################################
+
+
+    ###  Images avec alignement dans le json  ###
     
     try:
         os.makedirs("imgs_align")
@@ -135,7 +141,7 @@ def main():
     counter = 0
     for c in img_index:
         img = cv2.imread(path(c),cv2.IMREAD_COLOR)
-        img = img[:,:,::-1]
+        #img = img[:,:,::-1]
         transpose = False
         if img.shape[0] > img.shape[1]:
             img = cv2.transpose(img)
@@ -153,12 +159,13 @@ def main():
         
         counter +=1
         left = len(img_index) - counter 
-        
+        crop_rotated_img = cv2.transpose(crop_rotated_img)
+
         print("Image wCR_" + str(c) + ".jpg created "+ str(left) + " image(s) left")
         
         cv2.imwrite("imgs_align/wCR_"+ str(c) + ".jpg",crop_rotated_img)
 
-
+    ###  Strating to take care of images without labelization in the json file ###
 
 
 if __name__ == "__main__":
