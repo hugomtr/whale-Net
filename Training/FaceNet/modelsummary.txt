@@ -1,0 +1,137 @@
+Model: "model_1"
+__________________________________________________________________________________________________
+ Layer (type)                   Output Shape         Param #     Connected to                     
+==================================================================================================
+ input_2 (InputLayer)           [(None, 256, 256, 3  0           []                               
+                                )]                                                                
+                                                                                                  
+ conv2d_16 (Conv2D)             (None, 128, 128, 16  2352        ['input_2[0][0]']                
+                                )                                                                 
+                                                                                                  
+ batch_normalization_16 (BatchN  (None, 128, 128, 16  64         ['conv2d_16[0][0]']              
+ ormalization)                  )                                                                 
+                                                                                                  
+ max_pooling2d_1 (MaxPooling2D)  (None, 42, 42, 16)  0           ['batch_normalization_16[0][0]'] 
+                                                                                                  
+ conv2d_17 (Conv2D)             (None, 21, 21, 16)   2304        ['max_pooling2d_1[0][0]']        
+                                                                                                  
+ batch_normalization_17 (BatchN  (None, 21, 21, 16)  64          ['conv2d_17[0][0]']              
+ ormalization)                                                                                    
+                                                                                                  
+ conv2d_18 (Conv2D)             (None, 21, 21, 16)   2304        ['batch_normalization_17[0][0]'] 
+                                                                                                  
+ batch_normalization_18 (BatchN  (None, 21, 21, 16)  64          ['conv2d_18[0][0]']              
+ ormalization)                                                                                    
+                                                                                                  
+ add_10 (Add)                   (None, 21, 21, 16)   0           ['batch_normalization_17[0][0]', 
+                                                                  'batch_normalization_18[0][0]'] 
+                                                                                                  
+ conv2d_19 (Conv2D)             (None, 21, 21, 16)   2304        ['add_10[0][0]']                 
+                                                                                                  
+ batch_normalization_19 (BatchN  (None, 21, 21, 16)  64          ['conv2d_19[0][0]']              
+ ormalization)                                                                                    
+                                                                                                  
+ add_11 (Add)                   (None, 21, 21, 16)   0           ['add_10[0][0]',                 
+                                                                  'batch_normalization_19[0][0]'] 
+                                                                                                  
+ conv2d_20 (Conv2D)             (None, 11, 11, 32)   4608        ['add_11[0][0]']                 
+                                                                                                  
+ batch_normalization_20 (BatchN  (None, 11, 11, 32)  128         ['conv2d_20[0][0]']              
+ ormalization)                                                                                    
+                                                                                                  
+ conv2d_21 (Conv2D)             (None, 11, 11, 32)   9216        ['batch_normalization_20[0][0]'] 
+                                                                                                  
+ batch_normalization_21 (BatchN  (None, 11, 11, 32)  128         ['conv2d_21[0][0]']              
+ ormalization)                                                                                    
+                                                                                                  
+ add_12 (Add)                   (None, 11, 11, 32)   0           ['batch_normalization_20[0][0]', 
+                                                                  'batch_normalization_21[0][0]'] 
+                                                                                                  
+ conv2d_22 (Conv2D)             (None, 11, 11, 32)   9216        ['add_12[0][0]']                 
+                                                                                                  
+ batch_normalization_22 (BatchN  (None, 11, 11, 32)  128         ['conv2d_22[0][0]']              
+ ormalization)                                                                                    
+                                                                                                  
+ add_13 (Add)                   (None, 11, 11, 32)   0           ['add_12[0][0]',                 
+                                                                  'batch_normalization_22[0][0]'] 
+                                                                                                  
+ conv2d_23 (Conv2D)             (None, 6, 6, 64)     18432       ['add_13[0][0]']                 
+                                                                                                  
+ batch_normalization_23 (BatchN  (None, 6, 6, 64)    256         ['conv2d_23[0][0]']              
+ ormalization)                                                                                    
+                                                                                                  
+ conv2d_24 (Conv2D)             (None, 6, 6, 64)     36864       ['batch_normalization_23[0][0]'] 
+                                                                                                  
+ batch_normalization_24 (BatchN  (None, 6, 6, 64)    256         ['conv2d_24[0][0]']              
+ ormalization)                                                                                    
+                                                                                                  
+ add_14 (Add)                   (None, 6, 6, 64)     0           ['batch_normalization_23[0][0]', 
+                                                                  'batch_normalization_24[0][0]'] 
+                                                                                                  
+ conv2d_25 (Conv2D)             (None, 6, 6, 64)     36864       ['add_14[0][0]']                 
+                                                                                                  
+ batch_normalization_25 (BatchN  (None, 6, 6, 64)    256         ['conv2d_25[0][0]']              
+ ormalization)                                                                                    
+                                                                                                  
+ add_15 (Add)                   (None, 6, 6, 64)     0           ['add_14[0][0]',                 
+                                                                  'batch_normalization_25[0][0]'] 
+                                                                                                  
+ conv2d_26 (Conv2D)             (None, 3, 3, 128)    73728       ['add_15[0][0]']                 
+                                                                                                  
+ batch_normalization_26 (BatchN  (None, 3, 3, 128)   512         ['conv2d_26[0][0]']              
+ ormalization)                                                                                    
+                                                                                                  
+ conv2d_27 (Conv2D)             (None, 3, 3, 128)    147456      ['batch_normalization_26[0][0]'] 
+                                                                                                  
+ batch_normalization_27 (BatchN  (None, 3, 3, 128)   512         ['conv2d_27[0][0]']              
+ ormalization)                                                                                    
+                                                                                                  
+ add_16 (Add)                   (None, 3, 3, 128)    0           ['batch_normalization_26[0][0]', 
+                                                                  'batch_normalization_27[0][0]'] 
+                                                                                                  
+ conv2d_28 (Conv2D)             (None, 3, 3, 128)    147456      ['add_16[0][0]']                 
+                                                                                                  
+ batch_normalization_28 (BatchN  (None, 3, 3, 128)   512         ['conv2d_28[0][0]']              
+ ormalization)                                                                                    
+                                                                                                  
+ add_17 (Add)                   (None, 3, 3, 128)    0           ['add_16[0][0]',                 
+                                                                  'batch_normalization_28[0][0]'] 
+                                                                                                  
+ conv2d_29 (Conv2D)             (None, 2, 2, 512)    589824      ['add_17[0][0]']                 
+                                                                                                  
+ batch_normalization_29 (BatchN  (None, 2, 2, 512)   2048        ['conv2d_29[0][0]']              
+ ormalization)                                                                                    
+                                                                                                  
+ conv2d_30 (Conv2D)             (None, 2, 2, 512)    2359296     ['batch_normalization_29[0][0]'] 
+                                                                                                  
+ batch_normalization_30 (BatchN  (None, 2, 2, 512)   2048        ['conv2d_30[0][0]']              
+ ormalization)                                                                                    
+                                                                                                  
+ add_18 (Add)                   (None, 2, 2, 512)    0           ['batch_normalization_29[0][0]', 
+                                                                  'batch_normalization_30[0][0]'] 
+                                                                                                  
+ conv2d_31 (Conv2D)             (None, 2, 2, 512)    2359296     ['add_18[0][0]']                 
+                                                                                                  
+ batch_normalization_31 (BatchN  (None, 2, 2, 512)   2048        ['conv2d_31[0][0]']              
+ ormalization)                                                                                    
+                                                                                                  
+ add_19 (Add)                   (None, 2, 2, 512)    0           ['add_18[0][0]',                 
+                                                                  'batch_normalization_31[0][0]'] 
+                                                                                                  
+ global_average_pooling2d_1 (Gl  (None, 512)         0           ['add_19[0][0]']                 
+ obalAveragePooling2D)                                                                            
+                                                                                                  
+ flatten_1 (Flatten)            (None, 512)          0           ['global_average_pooling2d_1[0][0
+                                                                 ]']                              
+                                                                                                  
+ dropout_1 (Dropout)            (None, 512)          0           ['flatten_1[0][0]']              
+                                                                                                  
+ dense_1 (Dense)                (None, 128)          65536       ['dropout_1[0][0]']              
+                                                                                                  
+ lambda_1 (Lambda)              (None, 128)          0           ['dense_1[0][0]']                
+                                                                                                  
+==================================================================================================
+Total params: 5,876,144
+Trainable params: 5,871,600
+Non-trainable params: 4,544
+__________________________________________________________________________________________________
