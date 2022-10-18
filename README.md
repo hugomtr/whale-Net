@@ -1,4 +1,4 @@
-# Reasearch Work of Master's one: whale-Net - Deep Learning challenge on whale detection and recognition of individuals
+# Research Work of Master's one: whale-Net - Deep Learning challenge on whale detection and recognition of individuals
 There are approximately 450 living individuals of the right whale species. The main challenge for scientists is to be able to recognize them from drones or aerial images. Given a picture of whale like this
 <br>
 Given a picture of whale like this:
@@ -34,4 +34,4 @@ Correctly aligned image
 
 <br>
 
-For fursthermore information on the project you can check out the [project report](https://github.com/hugomtr/whale-Net/blob/main/TER_rapport.pdf)
+For furthermore information on the project you can check out the [project report](https://github.com/hugomtr/whale-Net/blob/main/TER_rapport.pdf)
